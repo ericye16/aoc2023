@@ -92,8 +92,8 @@ fn main() {
     let filename = &args[1];
     let lines = read_lines(&filename);
 
-    // let v = p1(&lines);
+    let v = p1(&lines);
     let v2 = p2(&lines);
-    // println!("P1: {}", v);
+    println!("P1: {}", v);
     println!("P2: {}", v2);
 }
