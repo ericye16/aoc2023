@@ -40,10 +40,21 @@ def countn(l: str, r: list[int]) -> int:
             op = True
             oplen += 1
         elif l[lidx] == "?":
-            lcpy = l[:lidx] + "." + l[lidx + 1 :]
-            a = countn(lcpy, r)
-            lcpy = l[:lidx] + "#" + l[lidx + 1 :]
-            b = countn(lcpy, r)
+            if op:
+                if ridx >= len(r):
+                    return 0
+                elif oplen == r[ridx]:
+                    a = countn("." + l[lidx + 1:], r[ridx + 1:])
+                    b = 0
+                elif oplen > r[ridx]:
+                    return 0
+                else:
+                    # oplen < r[ridx]
+                    a = 0
+                    b = countn("#" + l[lidx + 1:], (r[ridx] - oplen,) + r[ridx + 1:])
+            else:
+                a = countn("." + l[lidx + 1:], r[ridx:])
+                b = countn("#" + l[lidx + 1:], r[ridx:])
             return a + b
         lidx += 1
     if ridx == len(r):
@@ -73,6 +84,7 @@ def p1(inp):
     # print(sum(p1_l))
 
     ss = process_map(_f, inp, max_workers=9)
+    # ss = []
     # for idx, x in enumerate(inp):
     #     ans = p(x, 5)
     #     ss.append(ans)
