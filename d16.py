@@ -54,8 +54,8 @@ def printenergized(m, energized, beamloc):
     print("====")
 
 
-def p1(inp):
-    beams = [Beam("R", (0, 0))]
+def p1(inp, startbeam):
+    beams = [startbeam]
     energized = set()
     visited = set()
     while beams:
@@ -130,5 +130,29 @@ def p1(inp):
     return len(energized)
 
 
-# print(p1(ex1))
-print(p1(d16))
+def p2(inp):
+    m = 0
+    for c in range(len(inp[0])):
+        startbeam = Beam(dir="D", loc=(0, c))
+        l = p1(inp, startbeam)
+        if l > m:
+            m = l
+        startbeam = Beam(dir="U", loc=(len(inp) - 1, c))
+        l = p1(inp, startbeam)
+        if l > m:
+            m = l
+    for r in range(len(inp)):
+        startbeam = Beam(dir="R", loc=(r, 0))
+        l = p1(inp, startbeam)
+        if l > m:
+            m = l
+        startbeam = Beam(dir="L", loc=(r, len(inp[0]) - 1))
+        l = p1(inp, startbeam)
+        if l > m:
+            m = l
+
+    return m
+
+
+# print(p2(ex1))
+print(p2(d16))
