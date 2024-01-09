@@ -52,7 +52,7 @@ def adv(dir, r, c, n, cost_map):
         assert False
 
 
-def p1(inp):
+def p1(inp, minj=1, maxj=3):
     lll = []
     for l in inp:
         ll = []
@@ -87,7 +87,7 @@ def p1(inp):
         if cost_to_now < dists[layer][r][c]:
             # print(layer, r, c, cost_to_now)
             dists[layer][r][c] = cost_to_now
-            for i in range(1, 4):
+            for i in range(minj, maxj + 1):
                 newr, newc, costs = adv(layer, r, c, i, inp)
                 if inbound(newr, newc):
                     if layer == L or layer == R:
@@ -104,3 +104,5 @@ def p1(inp):
 
 print(p1(ex1))
 print(p1(d17))
+print(p1(ex1, minj=4, maxj=10))
+print(p1(d17, minj=4, maxj=10))
