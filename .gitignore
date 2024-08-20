@@ -15,5 +15,10 @@ Cargo.lock
 
 *.txt
 *.input
+*.in
+*.out
 *.md
+*.vscode
 venv
+
+bazel-*
