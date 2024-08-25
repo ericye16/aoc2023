@@ -8,3 +8,13 @@ cc_binary(
         "@re2",
     ],
 )
+
+cc_binary(
+    name = "d19",
+    srcs = ["d19.cpp"],
+    deps = [
+        "@abseil-cpp//absl/log:check",
+        "@abseil-cpp//absl/strings",
+        "@re2",
+    ],
+)
