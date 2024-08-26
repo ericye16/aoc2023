@@ -15,6 +15,7 @@ cc_binary(
     deps = [
         "@abseil-cpp//absl/log:check",
         "@abseil-cpp//absl/strings",
+        "@abseil-cpp//absl/log",
         "@re2",
     ],
 )
