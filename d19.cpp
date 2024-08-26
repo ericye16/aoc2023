@@ -421,21 +421,10 @@ int64_t CountParts(const vector<Partss> &parts)
 {
     // Inclusion-exclusion time
     int64_t sum = 0;
-    vector<pair<Partss, int>> intersections;
     for (const auto &part : parts)
     {
         // PrintPartss(part);
-        int intersections_size = intersections.size();
-        for (int i = 0; i < intersections_size; ++i)
-        {
-            if (auto ints = CombineParts(part, intersections[i].first))
-            {
-                sum += PartVolume(*ints) * intersections[i].second * -1;
-                intersections.push_back(make_pair(*ints, intersections[i].second * -1));
-            }
-        }
         sum += PartVolume(part);
-        intersections.push_back(make_pair(part, 1));
     }
     return sum;
 }
