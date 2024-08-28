@@ -13,9 +13,20 @@ cc_binary(
     name = "d19",
     srcs = ["d19.cpp"],
     deps = [
+        "@abseil-cpp//absl/log",
         "@abseil-cpp//absl/log:check",
         "@abseil-cpp//absl/strings",
+        "@re2",
+    ],
+)
+
+cc_binary(
+    name = "d20",
+    srcs = ["d20.cpp"],
+    deps = [
         "@abseil-cpp//absl/log",
+        "@abseil-cpp//absl/log:check",
+        "@abseil-cpp//absl/strings",
         "@re2",
     ],
 )
