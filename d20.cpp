@@ -245,7 +245,7 @@ int p1(Machine &machine)
     return pulses.lows * pulses.highs;
 }
 
-bool PressButton2(Machine &machine)
+bool PressButton2(Machine &machine, int64_t i)
 {
     std::deque<Pulse> pulses;
     pulses.push_back({.type = PulseType::Low,
@@ -272,7 +272,10 @@ bool PressButton2(Machine &machine)
         {
             rx_lowed = true;
         }
-        // cout << pulse.source << " " << PrintPulse(pulse.type) << " -> " << pulse.dest << endl;
+        if (pulse.dest == "vr" && pulse.type == PulseType::High)
+        {
+            cout << i << " " << pulse.source << " " << PrintPulse(pulse.type) << " -> " << pulse.dest << endl;
+        }
         auto it = machine.find(pulse.dest);
         if (it == machine.end())
             continue;
@@ -313,7 +316,7 @@ int64_t p2(Machine &machine)
     while (true)
     {
         i++;
-        bool rx = PressButton2(machine);
+        bool rx = PressButton2(machine, i);
         if (rx)
             break;
     }
